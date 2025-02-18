@@ -9,13 +9,14 @@ class Board
   def initialize
     @pieces = PlayersPieces.new
     @chess_board = Array.new(8) { Array.new(8, ' ')} # literal chess board
-    @rows = %w[0 1 2 3 4 5 6 7]
-    @columns = %w[0 1 2 3 4 5 6 7]
+    @columns = %w[+ 0 1 2 3 4 5 6 7]
+    @rows = %w[a b c d e f g h]
   end
 
   def set_pieces # sets the positions of pieces on chess board
     set_black_pieces
     set_white_pieces
+    print_chess_board
   end
 
   def set_black_pieces
@@ -26,5 +27,17 @@ class Board
   def set_white_pieces
     chess_board[-1] = pieces.white_pieces[1]
     chess_board[-2] = pieces.white_pieces[0]
+  end
+
+  def print_chess_board
+    board = Terminal::Table.new do |table|
+      table.add_row @columns
+      table.add_separator
+      chess_board.each_with_index do |row, index|
+        table.add_row [@rows[index], row].flatten
+        table.add_separator if index < 7
+      end
+    end
+    puts board
   end
 end
