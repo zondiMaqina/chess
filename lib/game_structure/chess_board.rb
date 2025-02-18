@@ -16,7 +16,6 @@ class Board
   def set_pieces # sets the positions of pieces on chess board
     set_black_pieces
     set_white_pieces
-    print_chess_board
   end
 
   def set_black_pieces
