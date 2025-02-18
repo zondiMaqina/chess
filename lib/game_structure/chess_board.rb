@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../chess_pieces/players_pieces'
+require 'terminal-table'
+
 # class for dispalying chess board
 class Board
   attr_reader :chess_board, :pieces
@@ -22,7 +24,7 @@ class Board
   end
 
   def set_white_pieces
-    chess_board[-1] = pieces.white_pieces[0]
-    chess_board[-2] = pieces.white_pieces[1]
+    chess_board[-1] = pieces.white_pieces[1]
+    chess_board[-2] = pieces.white_pieces[0]
   end
 end
