@@ -5,6 +5,7 @@ require_relative 'spec_helper'
 
 
 RSpec.describe InputValidity do
+  # initialze => assigns objects
   subject(:player_input) { described_class.new }
 
   describe 'input_valid?' do
@@ -29,14 +30,30 @@ RSpec.describe InputValidity do
       end
     end
   end
+
+  describe '#input_appearance' do
+    context 'when input is only letters' do
+      it 'will return falase' do
+        invalid_input = 'add'
+        result = player_input.input_appearance(invalid_input)
+        expect(result).to be false
+      end
+    end
+
+    context 'when input is only integers' do
+      it 'will return false' do
+        invalid_input = '12'
+        result = player_input.input_appearance(invalid_input)
+        expect(result).to be false
+      end
+    end
+
+    context 'when input has 1 letter and 1 integer' do
+      it 'will return true' do
+        vald_input = 'A1'
+        result = player_input.input_appearance(vald_input)
+        expect(result).to be true
+      end
+    end
+  end
 end
-
-
-# takes input wiht no whitespaces
-# if input length != 2
-  # return false
-# if input has only letters
-  # return false
-# if input has only numbers
-  # return false
-# return true if input is valid
