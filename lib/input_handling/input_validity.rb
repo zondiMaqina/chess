@@ -1,7 +1,7 @@
 # frozn_string_literal: true
 
 # module for handling players' input
-class InputValidity
+module InputValidity
   def initialize
     @columns = %w[0 1 2 3 4 5 6 7]
     @rows = %w[A B C D E F G H]
@@ -21,8 +21,3 @@ class InputValidity
     @rows.include?(input[0]) && @columns.include?(input[1])
   end
 end
-
-# test if input for selecting piece:
-# does not lead to empty position in board
-# does not lead to opponent's piece
-# does not lead to piece that cannot move

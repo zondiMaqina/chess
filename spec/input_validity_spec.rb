@@ -3,8 +3,12 @@
 require_relative '../lib/input_handling/input_validity'
 require_relative 'spec_helper'
 
+class InputCheck
+  include InputValidity
+end
 
-RSpec.describe InputValidity do
+
+RSpec.describe InputCheck do
   # initialze => assigns objects
   subject(:player_input) { described_class.new }
 
