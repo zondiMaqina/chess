@@ -23,10 +23,6 @@ class InputValidity
 end
 
 # test if input for selecting piece:
-# is 2 characters long
-# has on letter and one integer
-# is within board's limit
 # does not lead to empty position in board
 # does not lead to opponent's piece
 # does not lead to piece that cannot move
-
