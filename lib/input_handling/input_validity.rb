@@ -1,7 +1,7 @@
 # frozn_string_literal: true
 
 # module for handling players' input
-module InputValidity
+class InputValidity
   def initialize
     @columns = %w[0 1 2 3 4 5 6 7]
     @rows = %w[A B C D E F G H]
