@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../lib/input_handling/input_validity'
-require_relative 'spec_helper'
+require_relative '../../lib/input_handling/input_validity'
+require_relative '../spec_helper'
 
 RSpec.describe InputValidity do
   # initialze => assigns objects
