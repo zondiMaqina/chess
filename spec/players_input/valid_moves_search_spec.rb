@@ -12,7 +12,9 @@ RSpec.describe 'ValidMoves' do
   describe '#valid_moves_up' do
     context 'when given position is in empty path' do
       it 'will return all valid moves on' do
-        valid_moves = valid_moves_up(chess_board, position[0], position[1])
+        row = position[0]
+        col = position[1]
+        valid_moves = valid_moves_up(chess_board, row, col)
         expect(valid_moves.size).to eql(5)
       end
     end
@@ -39,6 +41,39 @@ RSpec.describe 'ValidMoves' do
   end
 
   describe '#valid_moves_down' do
+    context 'when given position is on empty path' do
+      it 'will get all valid moves on path' do
+        position = [0, 0]
+        row = position[0]
+        col = position[1]
+        valid_moves = valid_moves_down(chess_board, row, col)
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when at given position is at the bottom' do
+      it 'will not return further valid moves' do
+        position = [7, 0]
+        row = position[0]
+        col = position[1]
+        valid_moves = valid_moves_down(chess_board, row, col)
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when there is a piece on top of position' do
+      before do
+        chess_board[5][0] = '♟'
+      end
+
+      it 'will not return valid moves' do
+        position = [4, 0]
+        row = position[0]
+        col = position[1]
+        valid_moves = valid_moves_down(chess_board, row, col)
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe '#valid_moves_left' do
