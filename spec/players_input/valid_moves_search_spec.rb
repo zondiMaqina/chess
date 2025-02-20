@@ -37,4 +37,25 @@ RSpec.describe 'ValidMoves' do
       end
     end
   end
+
+  describe '#valid_moves_down' do
+  end
+
+  describe '#valid_moves_left' do
+  end
+
+  describe '#valid_moves_right' do
+  end
+
+  describe '#valid_moves_diagonally_right_up' do
+  end
+
+  describe 'valid_moves_diagonally_right_down' do
+  end
+
+  describe 'valid_moves_diagonally_left_up' do
+  end
+
+  describe 'valid_moves_diagonally_left_down' do
+  end
 end
