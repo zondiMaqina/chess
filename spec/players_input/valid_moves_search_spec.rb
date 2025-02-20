@@ -34,7 +34,7 @@ RSpec.describe 'ValidMoves' do
 
       it 'will return no valid move' do
         position = [5, 0]
-        p valid_moves = valid_moves_up(chess_board, position[0], position[1])
+        valid_moves = valid_moves_up(chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -44,19 +44,15 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will get all valid moves on path' do
         position = [0, 0]
-        row = position[0]
-        col = position[1]
-        valid_moves = valid_moves_down(chess_board, row, col)
+        valid_moves = valid_moves_down(chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
 
-    context 'when at given position is at the bottom' do
+    context 'when given position is at the bottom' do
       it 'will not return further valid moves' do
         position = [7, 0]
-        row = position[0]
-        col = position[1]
-        valid_moves = valid_moves_down(chess_board, row, col)
+        valid_moves = valid_moves_down(chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -68,18 +64,70 @@ RSpec.describe 'ValidMoves' do
 
       it 'will not return valid moves' do
         position = [4, 0]
-        row = position[0]
-        col = position[1]
-        valid_moves = valid_moves_down(chess_board, row, col)
+        valid_moves = valid_moves_down(chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
   end
 
-  describe '#valid_moves_left' do
+  describe '#valid_moves_search_left' do
+    context 'when given position has an empty path' do
+      it 'will return all valid moves on path' do
+        position = [2, 7]
+        valid_moves = valid_moves_search_left(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is at furthest edge' do
+      it 'will not return valid moves' do
+        position = [0, 0]
+        valid_moves = valid_moves_search_left(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has a piece next to it' do
+      before do
+        chess_board[0][3] = '♟'
+      end
+
+      it 'will not return further valid_moves' do
+        position = [0, 4]
+        valid_moves = valid_moves_search_left(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe '#valid_moves_right' do
+    context 'when given position is on empty path' do
+      it 'wil return all valid moves on path' do
+        position = [0, 0]
+        valid_moves = valid_moves_search_right(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is on edge of board' do
+      it 'wil not return further valid moves' do
+        position = [0, 7]
+        valid_moves = valid_moves_search_right(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has piece next to it' do
+      before do
+        chess_board[0][6] = '♟'
+      end
+
+      it 'wil not return further valid moves' do
+        position = [0, 7]
+        valid_moves = valid_moves_search_right(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe '#valid_moves_diagonally_right_up' do

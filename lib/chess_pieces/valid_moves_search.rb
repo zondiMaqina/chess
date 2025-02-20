@@ -8,21 +8,43 @@ module ValidMoves
   def valid_moves_up(chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
-      return valid_moves unless position_empty?(chess_board, row, col)
-
       row -= 1
       valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless position_empty?(chess_board, row, col)
     end
     valid_moves
   end
 
-  def valid_moves_down(chess_bpard, row, col)
+  def valid_moves_down(chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
-      return valid_moves unless position_empty?(chess_board, row, col)
-
       row += 1
-      valid_moves << [row, col] if valid?(chess_bpard, row, col)
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
+  def valid_moves_search_left(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col -= 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
+  def valid_moves_search_right(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col += 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
     end
     valid_moves
   end
