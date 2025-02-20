@@ -49,6 +49,54 @@ module ValidMoves
     valid_moves
   end
 
+  def valid_moves_diagonally_right_up(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col += 1
+      row -= 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
+  def valid_moves_diagonally_right_down(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col += 1
+      row += 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
+  def valid_moves_diagonally_left_up(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col -= 1
+      row -= 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
+  def valid_moves_diagonally_left_down(chess_board, row, col)
+    valid_moves = []
+    while position_valid?(row, col)
+      col -= 1
+      row += 1
+      valid_moves << [row, col] if valid?(chess_board, row, col)
+
+      return valid_moves unless valid?(chess_board, row, col)
+    end
+    valid_moves
+  end
+
   def valid?(chess_board, row, col)
     position_valid?(row, col) && position_empty?(chess_board, row, col)
   end
@@ -62,9 +110,3 @@ module ValidMoves
     chess_board[row][col].match(' ')
   end
 end
-
-# for each agorithm
-# search all possible moves from current move (selected_move)
-# stop algorithm as soon as any piece is found or when position is nil
-
-# each search needs : chess_board, selected_position

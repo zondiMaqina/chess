@@ -131,14 +131,122 @@ RSpec.describe 'ValidMoves' do
   end
 
   describe '#valid_moves_diagonally_right_up' do
+    context 'when given position is on empty path' do
+      it 'will return all valid_moves on path' do
+        position = [7, 0]
+        valid_moves = valid_moves_diagonally_right_up(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is at edge of board' do
+      it 'will not return further valid moves' do
+        position = [0, 7]
+        valid_moves = valid_moves_search_right(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has piece next to it' do
+      before do
+        chess_board[1][5] = '♟'
+      end
+
+      it 'wil not return further valid moves' do
+        position = [2, 4]
+        valid_moves = valid_moves_diagonally_right_up(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe 'valid_moves_diagonally_right_down' do
+    context 'when given position is on empty path' do
+      it 'will return all valid_moves on path' do
+        position = [0, 0]
+        valid_moves = valid_moves_diagonally_right_down(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is at edge of board' do
+      it 'will not return further valid moves' do
+        position = [7, 7]
+        valid_moves = valid_moves_diagonally_right_down(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has piece next to it' do
+      before do
+        chess_board[4][6] = '♟'
+      end
+
+      it 'wil not return further valid moves' do
+        position = [3, 5]
+        valid_moves = valid_moves_diagonally_right_down(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe 'valid_moves_diagonally_left_up' do
+    context 'when given position is on empty path' do
+      it 'will return all valid_moves on path' do
+        position = [7, 7]
+        valid_moves = valid_moves_diagonally_left_up(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is at edge of board' do
+      it 'will not return further valid moves' do
+        position = [7, 0]
+        valid_moves = valid_moves_diagonally_left_up(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has piece next to it' do
+      before do
+        chess_board[4][4] = '♟'
+      end
+
+      it 'wil not return further valid moves' do
+        position = [5, 5]
+        valid_moves = valid_moves_diagonally_left_up(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 
   describe 'valid_moves_diagonally_left_down' do
+    context 'when given position is on empty path' do
+      it 'will return all valid_moves on path' do
+        position = [0, 7]
+        valid_moves = valid_moves_diagonally_left_down(chess_board, position[0], position[1])
+        expect(valid_moves.size).to eql(7)
+      end
+    end
+
+    context 'when given position is at edge of board' do
+      it 'will not return further valid moves' do
+        position = [7, 0]
+        valid_moves = valid_moves_diagonally_left_down(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when given position has piece next to it' do
+      before do
+        chess_board[1][4] = '♟'
+      end
+
+      it 'wil not return further valid moves' do
+        position = [0, 5]
+        valid_moves = valid_moves_diagonally_left_down(chess_board, position[0], position[1])
+        expect(valid_moves).to be_empty
+      end
+    end
   end
 end
