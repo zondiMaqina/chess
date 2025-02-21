@@ -5,7 +5,7 @@
 
 # module for searching next possible moves for each piece
 module ValidMoves
-  def valid_moves_up(player_pieces, chess_board, row, col)
+  def valid_moves_up(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       row -= 1
@@ -17,7 +17,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_down(player_pieces, chess_board, row, col)
+  def valid_moves_down(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       row += 1
@@ -29,7 +29,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_search_left(player_pieces, chess_board, row, col)
+  def valid_moves_search_left(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col -= 1
@@ -41,7 +41,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_search_right(player_pieces, chess_board, row, col)
+  def valid_moves_search_right(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col += 1
@@ -53,7 +53,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_diagonally_right_up(player_pieces, chess_board, row, col)
+  def valid_moves_diagonally_right_up(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col += 1
@@ -66,7 +66,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_diagonally_right_down(player_pieces, chess_board, row, col)
+  def valid_moves_diagonally_right_down(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col += 1
@@ -79,7 +79,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_diagonally_left_up(player_pieces, chess_board, row, col)
+  def valid_moves_diagonally_left_up(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col -= 1
@@ -92,7 +92,7 @@ module ValidMoves
     valid_moves
   end
 
-  def valid_moves_diagonally_left_down(player_pieces, chess_board, row, col)
+  def valid_moves_diagonally_left_down(opponent_pieces, player_pieces, chess_board, row, col)
     valid_moves = []
     while position_valid?(row, col)
       col -= 1
