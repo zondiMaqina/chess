@@ -12,6 +12,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless position_empty?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -23,6 +24,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -34,6 +36,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -45,6 +48,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -57,6 +61,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -69,6 +74,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -81,6 +87,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
@@ -93,6 +100,7 @@ module ValidMoves
       valid_moves << [row, col] if valid?(player_pieces, chess_board, row, col)
 
       return valid_moves unless valid?(player_pieces, chess_board, row, col)
+      break if opponent_pieces.include?(chess_board[row][col])
     end
     valid_moves
   end
