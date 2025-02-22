@@ -110,7 +110,6 @@ module ValidMoves
   end
 
   def position_valid?(row, col)
-    # checks position coordinates are still within board
     row.between?(0, 7) && col.between?(0, 7)
   end
 

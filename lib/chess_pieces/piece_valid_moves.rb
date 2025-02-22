@@ -44,11 +44,18 @@ module PieceMoves
     all_valid_moves << valid_moves_search_right(opponent_pieces, player_pieces, chess_board, row, col)
     all_valid_moves.flatten(1)
   end
+
+  def king_valid_moves(all_directions, chess_board, row, col, player_pieces)
+    all_valid_moves = []
+    all_directions.each do |(x, y)|
+      all_valid_moves << [row + x, col + y] if still_valid?(row + x, col + y, chess_board, player_pieces)
+    end
+    all_valid_moves
+  end
+
+  def still_valid?(row, col, chess_board, player_pieces)
+    p [row, col]
+    chess_board[row][col]
+    row.between?(0, 7) && col.between?(0, 7) && !player_pieces.include?(chess_board[row][col])
+  end
 end
-
-# pawh => one move forward or one move diagonal_left or diagnoal_right or two moves forward
-# king all of them, one move
-
-# PAWN
-# moves diagonal when piece exits on next position
-# moves two moves forward if it is not moves yet

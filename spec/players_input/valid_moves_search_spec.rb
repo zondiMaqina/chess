@@ -9,12 +9,14 @@ RSpec.describe 'ValidMoves' do
   let(:chess_board) { Array.new(8) { Array.new(8, ' ') } }
   let(:position) { [5, 0] }
   let(:player_pieces) { %w[♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟] }
+  let(:opponent_pieces) { %w[♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ♙] }
+
   describe '#valid_moves_up' do
     context 'when given position is in empty path' do
       it 'will return all valid moves on' do
         row = position[0]
         col = position[1]
-        valid_moves = valid_moves_up(player_pieces, chess_board, row, col)
+        valid_moves = valid_moves_up(opponent_pieces, player_pieces, chess_board, row, col)
         expect(valid_moves.size).to eql(5)
       end
     end
@@ -22,7 +24,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on top' do
       it 'will return no valid moves' do
         position = [0, 1]
-        valid_moves = valid_moves_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_up(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -34,7 +36,7 @@ RSpec.describe 'ValidMoves' do
 
       it 'will return no valid move' do
         position = [5, 0]
-        valid_moves = valid_moves_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_up(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -44,7 +46,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will get all valid moves on path' do
         position = [0, 0]
-        valid_moves = valid_moves_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_down(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -52,7 +54,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at the bottom' do
       it 'will not return further valid moves' do
         position = [7, 0]
-        valid_moves = valid_moves_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_down(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -64,7 +66,7 @@ RSpec.describe 'ValidMoves' do
 
       it 'will not return valid moves' do
         position = [4, 0]
-        valid_moves = valid_moves_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_down(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -74,7 +76,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position has an empty path' do
       it 'will return all valid moves on path' do
         position = [2, 7]
-        valid_moves = valid_moves_search_left(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_left(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -82,7 +84,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at furthest edge' do
       it 'will not return valid moves' do
         position = [0, 0]
-        valid_moves = valid_moves_search_left(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_left(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -94,7 +96,7 @@ RSpec.describe 'ValidMoves' do
 
       it 'will not return further valid_moves' do
         position = [0, 4]
-        valid_moves = valid_moves_search_left(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_left(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -104,7 +106,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'wil return all valid moves on path' do
         position = [0, 0]
-        valid_moves = valid_moves_search_right(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_right(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -112,7 +114,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on edge of board' do
       it 'wil not return further valid moves' do
         position = [0, 7]
-        valid_moves = valid_moves_search_right(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_right(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -124,7 +126,7 @@ RSpec.describe 'ValidMoves' do
 
       it 'wil not return further valid moves' do
         position = [0, 7]
-        valid_moves = valid_moves_search_right(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_right(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -134,7 +136,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will return all valid_moves on path' do
         position = [7, 0]
-        valid_moves = valid_moves_diagonally_right_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_right_up(opponent_pieces, player_pieces, chess_board, position[0],
+                                                      position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -142,7 +145,7 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at edge of board' do
       it 'will not return further valid moves' do
         position = [0, 7]
-        valid_moves = valid_moves_search_right(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_search_right(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -154,7 +157,8 @@ RSpec.describe 'ValidMoves' do
 
       it 'wil not return further valid moves' do
         position = [2, 4]
-        valid_moves = valid_moves_diagonally_right_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_right_up(opponent_pieces, player_pieces, chess_board, position[0],
+                                                      position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -164,7 +168,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will return all valid_moves on path' do
         position = [0, 0]
-        valid_moves = valid_moves_diagonally_right_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_right_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                        position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -172,7 +177,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at edge of board' do
       it 'will not return further valid moves' do
         position = [7, 7]
-        valid_moves = valid_moves_diagonally_right_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_right_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                        position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -184,7 +190,8 @@ RSpec.describe 'ValidMoves' do
 
       it 'wil not return further valid moves' do
         position = [3, 5]
-        valid_moves = valid_moves_diagonally_right_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_right_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                        position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -194,7 +201,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will return all valid_moves on path' do
         position = [7, 7]
-        valid_moves = valid_moves_diagonally_left_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_up(opponent_pieces, player_pieces, chess_board, position[0],
+                                                     position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -202,7 +210,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at edge of board' do
       it 'will not return further valid moves' do
         position = [7, 0]
-        valid_moves = valid_moves_diagonally_left_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_up(opponent_pieces, player_pieces, chess_board, position[0],
+                                                     position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -214,7 +223,8 @@ RSpec.describe 'ValidMoves' do
 
       it 'wil not return further valid moves' do
         position = [5, 5]
-        valid_moves = valid_moves_diagonally_left_up(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_up(opponent_pieces, player_pieces, chess_board, position[0],
+                                                     position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -224,7 +234,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is on empty path' do
       it 'will return all valid_moves on path' do
         position = [0, 7]
-        valid_moves = valid_moves_diagonally_left_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                       position[1])
         expect(valid_moves.size).to eql(7)
       end
     end
@@ -232,7 +243,8 @@ RSpec.describe 'ValidMoves' do
     context 'when given position is at edge of board' do
       it 'will not return further valid moves' do
         position = [7, 0]
-        valid_moves = valid_moves_diagonally_left_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                       position[1])
         expect(valid_moves).to be_empty
       end
     end
@@ -244,7 +256,8 @@ RSpec.describe 'ValidMoves' do
 
       it 'wil not return further valid moves' do
         position = [0, 5]
-        valid_moves = valid_moves_diagonally_left_down(player_pieces, chess_board, position[0], position[1])
+        valid_moves = valid_moves_diagonally_left_down(opponent_pieces, player_pieces, chess_board, position[0],
+                                                       position[1])
         expect(valid_moves).to be_empty
       end
     end
