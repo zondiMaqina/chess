@@ -54,8 +54,10 @@ module PieceMoves
   end
 
   def still_valid?(row, col, chess_board, player_pieces)
-    p [row, col]
-    chess_board[row][col]
     row.between?(0, 7) && col.between?(0, 7) && !player_pieces.include?(chess_board[row][col])
+  end
+
+  def occupied?(row, col, chess_board, player_pieces)
+    still_valid(row, col, chess_board, player_pieces) && !chess_board[row][col].match(' ')
   end
 end
