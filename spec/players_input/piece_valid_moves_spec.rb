@@ -100,4 +100,70 @@ RSpec.describe PieceMoves do
       end
     end
   end
+
+  describe '#pawn_valid_moves' do
+    context 'when pawn has all spaces to move' do
+      it 'will only return one move' do
+        position = [4, 4]
+        all_directions = [[-1, 0], [-1, 1], [-1, -1]]
+        valid_moves = pawn_valid_moves(all_directions, position[0], position[1], chess_board, player_pieces)
+        expect(valid_moves.size).to eql(1)
+      end
+    end
+
+    context 'when there are allied pieces ahead' do
+      before do
+        [3, 4, 5].each do |col|
+          chess_board[3][col] = player_pieces[3]
+        end
+      end
+
+      it 'will return no valid moves' do
+        position = [4, 4]
+        all_directions = [[-1, 0], [-1, 1], [-1, -1]]
+        valid_moves = pawn_valid_moves(all_directions, position[0], position[1], chess_board, player_pieces)
+        expect(valid_moves).to be_empty
+      end
+    end
+
+    context 'when there are 2 pieces to consume' do
+      before do
+        [3, 5].each do |col|
+          chess_board[3][col] = opponent_pieces[3]
+        end
+      end
+
+      it 'will return 3 valid moves' do
+        position = [4, 4]
+        all_directions = [[-1, 0], [-1, -1], [-1, 1]]
+        valid_moves = pawn_valid_moves(all_directions, position[0], position[1], chess_board, player_pieces)
+        expect(valid_moves.size).to eql(3)
+      end
+    end
+  end
+
+  describe '#kight_valid_moves' do
+    context 'when knight has all spaces to move' do
+      it 'will return all valid moves' do
+        position = [4, 4]
+        valid_moves = knight_valid_moves(position[0], position[1], chess_board, player_pieces)
+        expect(valid_moves.size).to eql(8)
+      end
+    end
+
+    context 'when allied pieces are present' do
+      before do
+        [3, 5].each do |col|
+          chess_board[6][col] = player_pieces[0]
+          chess_board[6][col] = player_pieces[4]
+        end
+      end
+
+      it 'will return less valid moves' do
+        position = [4, 4]
+        valid_moves = knight_valid_moves(position[0], position[1], chess_board, player_pieces)
+        expect(valid_moves.size).to eql(6)
+      end
+    end
+  end
 end

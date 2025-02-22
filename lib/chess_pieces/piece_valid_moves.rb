@@ -53,11 +53,38 @@ module PieceMoves
     all_valid_moves
   end
 
+  def pawn_valid_moves(all_directions, row, col, chess_board, player_pieces)
+    all_valid_moves = []
+    all_directions.each do |(x, y)|
+      ref_row = row + x
+      ref_col = col + y
+      if [x, y] == [-1, 0] && still_valid?(ref_row, ref_col, chess_board, player_pieces)
+        all_valid_moves << [ref_row, ref_col] if chess_board[ref_row][ref_col] == ' '
+      elsif [x, y] == [-1, -1] && occupied?(ref_row, ref_col, chess_board, player_pieces)
+        all_valid_moves << [ref_row, ref_col]
+      elsif [x, y] == [-1, 1] && occupied?(ref_row, ref_col, chess_board, player_pieces)
+        all_valid_moves << [ref_row, ref_col]
+      end
+    end
+    all_valid_moves
+  end
+
+  def knight_valid_moves(row, col, chess_board, player_pieces)
+    maximum_possible_displacements = [[-2, -1], [-2, 1], [2, -1], [2, 1], [1, -2], [-1, -2], [-1, 2], [1, 2]]
+    possible_moves = []
+    maximum_possible_displacements.each do |move|
+      ref_row = row + move[0]
+      ref_col = col + move[1]
+      possible_moves << [ref_row, ref_col] if still_valid?(ref_row, ref_col, chess_board, player_pieces)
+    end
+    possible_moves
+  end
+
   def still_valid?(row, col, chess_board, player_pieces)
     row.between?(0, 7) && col.between?(0, 7) && !player_pieces.include?(chess_board[row][col])
   end
 
   def occupied?(row, col, chess_board, player_pieces)
-    still_valid(row, col, chess_board, player_pieces) && !chess_board[row][col].match(' ')
+    still_valid?(row, col, chess_board, player_pieces) && !chess_board[row][col].match(' ')
   end
 end
