@@ -10,7 +10,7 @@ RSpec.describe PieceMoves do
   let(:player_pieces) { %w[♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟] }
   let(:opponent_pieces) { %w[♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ♙] }
   let(:chess_board) { Array.new(8) { Array.new(8, ' ') } }
-  let(:all_directions) { [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1], [-1, 1], [-1, 1]] }
+  let(:all_directions) { [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1], [-1, 1], [1, -1]] }
 
   describe '#rook_valid_moves' do
     context 'when there are no pieces in valid moves' do
@@ -89,15 +89,14 @@ RSpec.describe PieceMoves do
 
     context 'when the king has allied pieces blocking it' do
       before do
-        chess_board[3][4] = '♟'
-        chess_board[5][5] = '♟'
-        chess_board[3][3] = '♟'
+        chess_board[6][4] = player_pieces[0]
+        chess_board[7][3] = player_pieces[1]
       end
 
       it 'will return less valid moves' do
-        position = [4, 4]
+        position = [7, 4]
         valid_moves = king_valid_moves(all_directions, chess_board, position[0], position[1], player_pieces)
-        expect(valid_moves.size).to eql(5)
+        expect(valid_moves.size).to eql(3)
       end
     end
   end
