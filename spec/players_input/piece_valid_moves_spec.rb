@@ -28,7 +28,7 @@ RSpec.describe PieceMoves do
       end
 
       it 'will return less valid moves' do
-        p valid_moves = rook_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = rook_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(4)
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe PieceMoves do
   describe '#bishop_valid_moves' do
     context 'when there are no pieces in valid moves' do
       it 'will return all valid moves on board' do
-        p valid_moves = bishop_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = bishop_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(9)
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe PieceMoves do
       end
 
       it 'will return less valid moves' do
-        p valid_moves = bishop_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = bishop_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(5)
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe PieceMoves do
 
       it 'will return less valid moves' do
         position = [7, 4]
-        p valid_moves = king_valid_moves(all_directions, chess_board, position[0], position[1], player_pieces)
+        valid_moves = king_valid_moves(all_directions, chess_board, position[0], position[1], player_pieces)
         expect(valid_moves.size).to eql(3)
       end
     end
@@ -159,7 +159,6 @@ RSpec.describe PieceMoves do
       before do
         [3, 5].each do |col|
           chess_board[6][col] = player_pieces[0]
-          chess_board[6][col] = player_pieces[4]
         end
       end
 

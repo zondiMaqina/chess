@@ -7,9 +7,9 @@ RSpec.describe PositionValidity do
   # initalize => assigns object(s)
   # board_position_valid? => Public Script method
   subject(:player_selection) { described_class.new }
-  let(:chess_board) { Array.new(8) {Array.new(8, ' ')} }
+  let(:chess_board) { Array.new(8) { Array.new(8, ' ') } }
   let(:position) { 'a2' }
-  let(:chess_pieces) {%w[♟ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜]}
+  let(:chess_pieces) { %w[♟ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜] }
 
   describe '#position_yours?' do
     context 'when input leads to empty position on board' do

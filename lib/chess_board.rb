@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '../chess_pieces/players_pieces'
+require_relative 'chess_pieces/players_pieces'
 require 'terminal-table'
 
 # class for dispalying chess board
 class Board
   attr_reader :chess_board, :pieces
+
   def initialize
     @pieces = PlayersPieces.new
-    @chess_board = Array.new(8) { Array.new(8, ' ')} # literal chess board
+    @chess_board = Array.new(8) { Array.new(8, ' ') } # literal chess board
     @columns = %w[+ 0 1 2 3 4 5 6 7]
     @rows = %w[a b c d e f g h]
   end
