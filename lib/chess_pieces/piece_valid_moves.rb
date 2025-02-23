@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'valid_moves_search'
-
-# the time complexity of these methods should be studied :(
+# time complexity used for searching algorithms is Big O(n * v)
+# where n is the amount of directions
+# and v is the free space to gain valid moves on board
 
 # module for searching all valid moves for each piece
 module PieceMoves
@@ -61,15 +61,6 @@ module PieceMoves
       end
     end
     valid_moves
-  end
-
-  def horizontally_vertically(opponent_pieces, player_pieces, chess_board, row, col)
-    all_valid_moves = []
-    all_valid_moves << valid_moves_up(opponent_pieces, player_pieces, chess_board, row, col)
-    all_valid_moves << valid_moves_down(opponent_pieces, player_pieces, chess_board, row, col)
-    all_valid_moves << valid_moves_search_left(opponent_pieces, player_pieces, chess_board, row, col)
-    all_valid_moves << valid_moves_search_right(opponent_pieces, player_pieces, chess_board, row, col)
-    all_valid_moves.flatten(1)
   end
 
   def king_valid_moves(all_directions, chess_board, row, col, player_pieces)
