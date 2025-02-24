@@ -63,8 +63,9 @@ module PieceMoves
     valid_moves
   end
 
-  def king_valid_moves(all_directions, chess_board, row, col, player_pieces)
+  def king_valid_moves(chess_board, row, col, player_pieces)
     all_valid_moves = []
+    all_directions = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, 1], [-1, -1], [1, 1], [1, -1]]
     all_directions.each do |(x, y)|
       all_valid_moves << [row + x, col + y] if valid?(player_pieces, chess_board, row + x, col + y)
     end
