@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
-require_relative './input_validity'
+require_relative 'input_validity'
 
 # class for handling positions on board requested by players
 class PositionValidity < InputValidity
   def initialize
     super
     @rows = %w[A B C D E F G H]
-  end
-
-  def board_position_valid?(chess_board, position, player_pieces)
-    
   end
 
   def position_yours?(chess_board, position, player_pieces)
@@ -30,10 +26,6 @@ class PositionValidity < InputValidity
 
   def position_valid?(chess_board, position, player_pieces)
     position_yours?(chess_board, position, player_pieces) && piece_moveable?(chess_board, position)
-  end
-
-  def piece_moveable?(chess_board, position)
-    
   end
 end
 

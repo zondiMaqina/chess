@@ -8,7 +8,7 @@ class InputValidity
   end
 
   def input_valid?(input)
-    # emoves whitespace and capitalizes
+    # removes whitespace and capitalizes
     input = input.gsub(/\s+/, '').upcase
     input_size(input) == true && input_appearance(input) == true
   end
