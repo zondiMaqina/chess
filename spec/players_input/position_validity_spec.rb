@@ -9,12 +9,12 @@ RSpec.describe PositionValidity do
   subject(:player_selection) { described_class.new }
   let(:chess_board) { Array.new(8) { Array.new(8, ' ') } }
   let(:position) { 'a2' }
-  let(:chess_pieces) { %w[♟ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜] }
+  let(:player_pieces) { %w[♟ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜] }
 
   describe '#position_yours?' do
     context 'when input leads to empty position on board' do
       it 'will return false' do
-        result = player_selection.position_yours?(chess_board, position, chess_pieces)
+        result = player_selection.position_yours?(chess_board, position, player_pieces)
         expect(result).to be false
       end
     end
@@ -26,7 +26,7 @@ RSpec.describe PositionValidity do
 
       it 'will return true' do
         position = 'b4'
-        result = player_selection.position_yours?(chess_board, position, chess_pieces)
+        result = player_selection.position_yours?(chess_board, position, player_pieces)
         expect(result).to be true
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe PositionValidity do
 
       it 'will return false' do
         position = 'g5'
-        result = player_selection.position_yours?(chess_board, position, chess_pieces)
+        result = player_selection.position_yours?(chess_board, position, player_pieces)
         expect(result).to be false
       end
     end

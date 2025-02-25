@@ -13,7 +13,7 @@ class PositionValidity < InputValidity
   end
 
   def position_yours?(chess_board, position, player_pieces)
-    row = @rows.index(position[0].upcase)
+    row = rows.index(position[0].downcase)
     col = position[1].to_i
     pos_selected = chess_board[row][col]
     player_pieces.include?(pos_selected)
