@@ -80,7 +80,7 @@ RSpec.describe PieceMoves do
     context 'when king has all space to move' do
       it 'will return 5 valid moves' do
         position = [4, 4]
-        valid_moves = king_valid_moves(all_directions, chess_board, position[0], position[1], opponent_pieces)
+        valid_moves = king_valid_moves(chess_board, position[0], position[1], opponent_pieces)
         expect(valid_moves.size).to eql(8)
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe PieceMoves do
 
       it 'will return less valid moves' do
         position = [7, 4]
-        valid_moves = king_valid_moves(all_directions, chess_board, position[0], position[1], player_pieces)
+        valid_moves = king_valid_moves(chess_board, position[0], position[1], player_pieces)
         expect(valid_moves.size).to eql(3)
       end
     end
@@ -106,7 +106,7 @@ RSpec.describe PieceMoves do
         row = position[0]
         col = position[1]
         all_directions = [[-1, 0], [-1, 1], [-1, -1]]
-        valid_moves = pawn_valid_moves(opponent_pieces, all_directions, row, col, chess_board, player_pieces)
+        valid_moves = pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
         expect(valid_moves.size).to eql(1)
       end
     end
@@ -123,7 +123,7 @@ RSpec.describe PieceMoves do
         row = position[0]
         col = position[1]
         all_directions = [[-1, 0], [-1, 1], [-1, -1]]
-        valid_moves = pawn_valid_moves(opponent_pieces, all_directions, row, col, chess_board, player_pieces)
+        valid_moves = pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
         expect(valid_moves).to be_empty
       end
     end
@@ -140,7 +140,7 @@ RSpec.describe PieceMoves do
         row = position[0]
         col = position[1]
         all_directions = [[-1, 0], [-1, -1], [-1, 1]]
-        valid_moves = pawn_valid_moves(opponent_pieces, all_directions, row, col, chess_board, player_pieces)
+        valid_moves = pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
         expect(valid_moves.size).to eql(3)
       end
     end
