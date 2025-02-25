@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require_relative 'input_validity'
-
+require_relative '../chess_pieces/input_convertion'
 # class for handling positions on board requested by players
 class PositionValidity < InputValidity
+  attr_reader :rows, :piece_selection
+
   def initialize
     super
-    @rows = %w[A B C D E F G H]
+    @rows = %w[a b c d e f g h]
+    @piece_selection = PieceSelection.new
   end
 
   def position_yours?(chess_board, position, player_pieces)
@@ -16,16 +19,21 @@ class PositionValidity < InputValidity
     player_pieces.include?(pos_selected)
   end
 
-  def try_again(chess_board, position, player_pieces)
-    until position_valid?(chess_board, position, player_pieces) && input_valid?(position)
-      puts 'position empty or piece is unmoveable try again'
+  def try_again(chess_board, position, player_pieces, opp_pieces)
+    until position_valid?(chess_board, position, player_pieces, opp_pieces) && input_valid?(position)
+      puts 'position not yours or piece is unmoveable try again'
       position = gets.chomp
     end
     position
   end
 
-  def position_valid?(chess_board, position, player_pieces)
-    position_yours?(chess_board, position, player_pieces) && piece_moveable?(chess_board, position)
+  def position_valid?(chess_board, position, player_pieces, opp_pieces)
+    position_yours?(chess_board, position, player_pieces) && moveable?(chess_board, position, player_pieces, opp_pieces)
+  end
+
+  def moveable?(chess_board, position, player_pieces, opponent_pieces)
+    moves = piece_selection.find_valid_moves(opponent_pieces, position, chess_board, player_pieces)
+    moves.empty? == false
   end
 end
 

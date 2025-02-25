@@ -72,8 +72,9 @@ module PieceMoves
     all_valid_moves
   end
 
-  def pawn_valid_moves(opponent_pieces, all_directions, row, col, chess_board, player_pieces)
+  def pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
     all_valid_moves = []
+    all_directions = [[-1, 0], [-1, -1], [-1, 1]]
     all_directions.each do |(x, y)|
       ref_row = row + x
       ref_col = col + y
