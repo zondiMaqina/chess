@@ -202,13 +202,19 @@ RSpec.describe 'KingSafety' do
         expect(check_mate).to eql(true)
       end
     end
+
+    context 'when king is blocked by allied pieces and checked' do
+      before do
+        chess_board[0][0] = opp_king
+        chess_board[0][1] = opp_pieces[2]
+        chess_board[1][1] = opp_pieces[2]
+        chess_board[3][0] = player_pieces[0]
+      end
+
+      it 'is checkmate' do
+        check_mate = check_mate?(opp_pieces, chess_board, player_pieces)
+        expect(check_mate).to eql(true)
+      end
+    end
   end
 end
-
-# FIRST CHECK IF OPPONENT HAS PLAYED
-# takes in filtered chess_board and last_position made
-# makes king search all_directions and stops as soon as that psoition is found
-# if found
-# player is in check
-# if not
-# opponent can play

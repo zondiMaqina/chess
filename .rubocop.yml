@@ -16,3 +16,4 @@ Metrics/BlockLength:
   - 'spec/players_input/piece_valid_moves_spec.rb'
   - 'spec/players_input/input_validity_spec.rb'
   - 'spec/players_input/position_validity_spec.rb'
+  - 'spec/players_input/king_search_spec.rb'

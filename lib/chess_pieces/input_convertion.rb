@@ -24,7 +24,7 @@ class PieceSelection < PlayersPieces
     when :pawn then pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
     when :rook then rook_valid_moves(opponent_pieces, player_pieces, chess_board, row, col)
     when :knight then knight_valid_moves(row, col, chess_board, player_pieces)
-    when :bishop then bishop_valid_moves(opponent_pieces, player_pieces, row, col, chess_board)
+    when :bishop then bishop_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
     when :king then king_valid_moves(chess_board, row, col, player_pieces)
     when :queen then queen_valid_moves(opponent_pieces, player_pieces, chess_board, row, col)
     end

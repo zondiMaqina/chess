@@ -25,7 +25,7 @@ module PieceMoves
     valid_moves
   end
 
-  def bishop_valid_moves(opponent_pieces, player_pieces, chess_board, row, col)
+  def bishop_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
     valid_moves = []
     all_directions = [[-1, 1], [-1, -1], [1, 1], [1, -1]]
     all_directions.each do |(x, y)|
