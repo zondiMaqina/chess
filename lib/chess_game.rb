@@ -18,6 +18,18 @@ class ChessGame < PositionValidity
     @piece_selection = PieceSelection.new
   end
 
+  def game_introduction
+    <<-HEREDOC
+      TERMINAL BASED CHESS
+      -----------------------
+      Welcome to Chess !!!
+      You get to choose to play against your opponent
+
+      Player One -> [white pieces]
+      Player Two -> [black pieces]
+    HEREDOC
+  end
+
   def verify_input(player_input, chess_board, player_pieces, opp_pieces)
     if input_valid?(player_input)
       verify_validity(player_input, chess_board, player_pieces, opp_pieces)
