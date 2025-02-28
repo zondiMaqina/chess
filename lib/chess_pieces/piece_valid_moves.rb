@@ -80,9 +80,7 @@ module PieceMoves
       ref_col = col + y
       if [x, y] == [-1, 0] && valid?(player_pieces, chess_board, ref_row, ref_col)
         all_valid_moves << [ref_row, ref_col] if chess_board[ref_row][ref_col] == ' '
-      elsif [x, y] == [-1, -1] && valid?(player_pieces, chess_board, ref_row, ref_col)
-        all_valid_moves << [ref_row, ref_col] if opponent_pieces.include?(chess_board[ref_row][ref_col])
-      elsif [x, y] == [-1, 1] && valid?(player_pieces, chess_board, ref_row, ref_col)
+      elsif ([x, y] == [-1, -1] || [x, y] == [-1, 1]) && valid?(player_pieces, chess_board, ref_row, ref_col)
         all_valid_moves << [ref_row, ref_col] if opponent_pieces.include?(chess_board[ref_row][ref_col])
       end
     end

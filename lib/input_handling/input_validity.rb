@@ -18,6 +18,6 @@ class InputValidity
   end
 
   def input_appearance(input)
-    @rows.include?(input[0]) && @columns.include?(input[1])
+    @rows.include?(input[0].downcase) && @columns.include?(input[1])
   end
 end

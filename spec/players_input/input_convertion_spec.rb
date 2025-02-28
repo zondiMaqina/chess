@@ -40,7 +40,7 @@ RSpec.describe PieceSelection do
       it 'will return all valid moves' do
         position = [4, 4]
         expect(position_selected).to receive(:pawn_valid_moves)
-        position_selected.find_valid_moves(opponent_pieces, all_directions, position, chess_board, player_pieces)
+        position_selected.find_valid_moves(opponent_pieces, position, chess_board, player_pieces)
       end
     end
   end
