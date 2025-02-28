@@ -14,7 +14,8 @@ class Board
     @rows = %w[a b c d e f g h]
   end
 
-  def set_pieces # sets the positions of pieces on chess board
+  # sets the positions of pieces on chess board
+  def set_pieces
     set_black_pieces
     set_white_pieces
   end

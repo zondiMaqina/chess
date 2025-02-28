@@ -19,15 +19,25 @@ class ChessGame < PositionValidity
   end
 
   def game_introduction
-    <<-HEREDOC
+    prepare_chess_board
+    puts <<-HEREDOC
       TERMINAL BASED CHESS
       -----------------------
       Welcome to Chess !!!
       You get to choose to play against your opponent
-
+      #{board.print_chess_board}
       Player One -> [white pieces]
       Player Two -> [black pieces]
     HEREDOC
+  end
+
+  def prepare_chess_board
+    board.set_pieces
+  end
+
+  def play_player1
+    puts 'Selct piece to move player 1'
+    verify_input(gets.chomp, chess_board, white_pieces, black_pieces)
   end
 
   def verify_input(player_input, chess_board, player_pieces, opp_pieces)
@@ -59,3 +69,5 @@ class ChessGame < PositionValidity
     puts "you have chosen a #{piece_name} at #{rows[position[0]]}#{position[1]}"
   end
 end
+
+ChessGame.new.game_introduction
