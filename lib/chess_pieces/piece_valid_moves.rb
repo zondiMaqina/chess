@@ -73,18 +73,34 @@ module PieceMoves
   end
 
   def pawn_valid_moves(opponent_pieces, row, col, chess_board, player_pieces)
-    all_valid_moves = []
-    all_directions = [[-1, 0], [-1, -1], [-1, 1]]
+    @all_valid_moves = []
+    all_directions = [[-1, 0], [-1, -1], [-1, 1], [1, 0]]
     all_directions.each do |(x, y)|
       ref_row = row + x
       ref_col = col + y
-      if [x, y] == [-1, 0] && valid?(player_pieces, chess_board, ref_row, ref_col)
-        all_valid_moves << [ref_row, ref_col] if chess_board[ref_row][ref_col] == ' '
-      elsif ([x, y] == [-1, -1] || [x, y] == [-1, 1]) && valid?(player_pieces, chess_board, ref_row, ref_col)
-        all_valid_moves << [ref_row, ref_col] if opponent_pieces.include?(chess_board[ref_row][ref_col])
+      if player_pieces.include?('♙')
+        move_down(x, y, player_pieces, chess_board, ref_row, ref_col, opponent_pieces)
+      elsif player_pieces.include?('♟')
+        move_up(x, y, player_pieces, chess_board, ref_row, ref_col, opponent_pieces)
       end
     end
-    all_valid_moves
+    @all_valid_moves
+  end
+
+  def move_down(x, y, player_pieces, chess_board, ref_row, ref_col, opponent_pieces)
+    if ([x, y] == [1, 0]) && valid?(player_pieces, chess_board, ref_row, ref_col)
+      @all_valid_moves << [ref_row, ref_col] if chess_board[ref_row][ref_col] == ' '
+    elsif ([x, y] == [-1, -1] || [x, y] == [-1, 1]) && valid?(player_pieces, chess_board, ref_row, ref_col)
+      @all_valid_moves << [ref_row, ref_col] if opponent_pieces.include?(chess_board[ref_row][ref_col])
+    end
+  end
+
+  def move_up(x, y, player_pieces, chess_board, ref_row, ref_col, opponent_pieces)
+    if [x, y] == [-1, 0] && valid?(player_pieces, chess_board, ref_row, ref_col)
+      @all_valid_moves << [ref_row, ref_col] if chess_board[ref_row][ref_col] == ' '
+    elsif ([x, y] == [-1, -1] || [x, y] == [-1, 1]) && valid?(player_pieces, chess_board, ref_row, ref_col)
+      @all_valid_moves << [ref_row, ref_col] if opponent_pieces.include?(chess_board[ref_row][ref_col])
+    end
   end
 
   def knight_valid_moves(row, col, chess_board, player_pieces)

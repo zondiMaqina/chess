@@ -13,8 +13,10 @@ class PositionValidity < InputValidity
   end
 
   def position_yours?(chess_board, position, player_pieces)
-    row = rows.index(position[0])
+    row = rows.index(position[0].downcase)
     col = position[1].to_i
+    return false if input_valid?(position) == false
+
     pos_selected = chess_board[row][col]
     player_pieces.include?(pos_selected)
   end
@@ -23,16 +25,20 @@ class PositionValidity < InputValidity
     until position_valid?(chess_board, position, player_pieces, opp_pieces) && input_valid?(position)
       puts 'position not yours or piece is unmoveable try again'
       position = gets.chomp
+      p chess_board[rows.index(position[0])][position[1].to_i]
+      p player_pieces
     end
-    position
+    position.downcase
   end
 
   def position_valid?(chess_board, position, player_pieces, opp_pieces)
-    position_yours?(chess_board, position, player_pieces) && moveable?(chess_board, position, player_pieces, opp_pieces)
+    position_yours?(chess_board, position,
+                    player_pieces[0..5]) && moveable?(chess_board, position, player_pieces[0..5], opp_pieces)
   end
 
   def moveable?(chess_board, position, player_pieces, opponent_pieces)
-    moves = piece_selection.find_valid_moves(opponent_pieces, position, chess_board, player_pieces)
+    position = [@rows.index(position[0]), position[1].to_i]
+    p moves = piece_selection.find_valid_moves(opponent_pieces, position, chess_board, player_pieces)
     moves.empty? == false
   end
 end
