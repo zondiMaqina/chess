@@ -2,6 +2,9 @@
 
 require_relative 'input_validity'
 require_relative '../chess_pieces/input_convertion'
+
+require 'colorize'
+
 # class for handling positions on board requested by players
 class PositionValidity < InputValidity
   attr_reader :rows, :piece_selection
@@ -22,8 +25,8 @@ class PositionValidity < InputValidity
   end
 
   def try_again(chess_board, position, player_pieces, opp_pieces)
-    until position_valid?(chess_board, position, player_pieces, opp_pieces) && input_valid?(position)
-      puts 'position not yours or piece is unmoveable try again'
+    until pos_valid?(chess_board, position, player_pieces, opp_pieces) && input_valid?(position)
+      puts 'move invalid or you are currently checked'.colorize(:red)
       position = gets.chomp
       p chess_board[rows.index(position[0])][position[1].to_i]
       p player_pieces
@@ -31,7 +34,7 @@ class PositionValidity < InputValidity
     position.downcase
   end
 
-  def position_valid?(chess_board, position, player_pieces, opp_pieces)
+  def pos_valid?(chess_board, position, player_pieces, opp_pieces)
     position_yours?(chess_board, position,
                     player_pieces[0..5]) && moveable?(chess_board, position, player_pieces[0..5], opp_pieces)
   end

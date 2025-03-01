@@ -8,10 +8,10 @@ class PieceSelection < PlayersPieces
 
   include PieceMoves
 
-  def convert_position(position)
+  def convert_position(piece)
     @piece_name = nil
     identifiers.each do |name, pieces|
-      @piece_name = name if pieces.include?(position)
+      @piece_name = name if pieces.include?(piece)
     end
     piece_name
   end

@@ -107,9 +107,11 @@ module KingSafety
 
   # searching from the opponent's perspective
   def check_mate?(opp_pieces, chess_board, player_pieces)
-    opp_king_pos = king_search(opp_pieces[4], chess_board)
+    puts 'opp king'
+    p opp_king_pos = king_search(opp_pieces[4], chess_board)
     selection = PieceSelection.new
-    next_valid_moves = selection.king_valid_moves(chess_board, opp_king_pos[0], opp_king_pos[1], opp_pieces)
+    p next_valid_moves = selection.king_valid_moves(chess_board, opp_king_pos[0], opp_king_pos[1], opp_pieces)
+    return false if next_valid_moves.empty?
 
     next_valid_moves.all? do |move|
       king_checked?(opp_pieces, chess_board, move, player_pieces) == true

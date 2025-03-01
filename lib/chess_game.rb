@@ -4,12 +4,15 @@ require_relative 'chess_board'
 require_relative 'input_handling/position_validity'
 require_relative 'chess_pieces/players_pieces'
 require_relative 'chess_pieces/input_convertion'
+require_relative 'chess_pieces/king_search'
 
 require 'colorize'
 
 # class for running chess game
 class ChessGame < PositionValidity
   attr_reader :player1_pieces, :player2_pieces, :board, :piece_selection, :chess_board
+
+  include KingSafety
 
   def initialize
     super
@@ -38,11 +41,15 @@ class ChessGame < PositionValidity
   end
 
   def play_player1
+    return player_wins('player 2') if check_mate?(player1_pieces[0..5], chess_board, player2_pieces[0..5])
+
     puts 'Select piece to move player 1'.colorize(:blue)
     verify_input(gets.chomp, chess_board, player1_pieces, player2_pieces)
   end
 
   def play_player2
+    return player_wins('player 1') if check_mate?(player2_pieces[0..5], chess_board, player1_pieces[0..5])
+
     puts 'Select piece player 2'.colorize(:blue)
     verify_input(gets.chomp, chess_board, player2_pieces, player1_pieces)
   end
@@ -63,8 +70,8 @@ class ChessGame < PositionValidity
   end
 
   def verify_validity(position, chess_board, player_pieces, opp_pieces)
-    return verify_moves(position, opp_pieces, player_pieces) if position_valid?(chess_board, position, player_pieces,
-                                                                                opp_pieces)
+    return verify_moves(position, opp_pieces, player_pieces) if pos_valid?(chess_board, position, player_pieces,
+                                                                           opp_pieces)
 
     position = try_again(chess_board, position, player_pieces[0..5], opp_pieces)
     verify_moves(position, opp_pieces, player_pieces)
@@ -109,6 +116,11 @@ class ChessGame < PositionValidity
     end
     pos2
   end
+
+  def player_wins(player)
+    puts 'Checkmate'
+    puts "#{player} wins the game".colorize(:green)
+    exit
+  end
 end
 
-ChessGame.new.start_game

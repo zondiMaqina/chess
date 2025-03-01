@@ -7,10 +7,16 @@ A terminal based chess game programmed using Ruby as the last project from Odin 
 
 At the moment, the game has limited features
 
+## Features excluded due to lack of skill
+
 - Castling
-- Pawn movving two blocks ahead
+- Pawn moving two blocks ahead at start
+- checking
 
-Such features are not included yet...
+## features included
+- checkmate
+- moving pieces from one place to the next
 
+Such features are not included yet ;)...
 
-<p>The was the most stressing, difficult, biggest project to ever create in my entire life of programming as a beginner :( </p>
+<p>The was the most stressing, difficult, biggest project to ever create in my entire life of programming as a beginner :( and it is not finished yet </p>

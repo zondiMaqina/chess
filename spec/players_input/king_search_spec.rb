@@ -216,5 +216,19 @@ RSpec.describe 'KingSafety' do
         expect(check_mate).to eql(true)
       end
     end
+
+    context 'when opp king is blocked by allied pieces' do
+      before do
+        chess_board[0][0] = opp_king
+        chess_board[1][0] = opp_pieces[0]
+        chess_board[3][3] = player_pieces[3]
+        chess_board[0][1] = opp_pieces[2]
+      end
+
+      it 'is not checkmate' do
+        check_mate = check_mate?(opp_pieces, chess_board, player_pieces)
+        expect(check_mate).to eql false
+      end
+    end
   end
 end
