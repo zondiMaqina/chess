@@ -2,8 +2,8 @@
 
 A terminal based chess game programmed using Ruby as the last project from Odin Project
 
-> [IMPORTANT]
-> be sure to to run `bundle install` in root directory to have the needed dependencies for game
+> [!IMPORTANT]
+> be sure to to run `bundle install` in root directory to have the needed dependencies for game and run `ruby chess.rb` to start game
 
 At the moment, the game has limited features
 
