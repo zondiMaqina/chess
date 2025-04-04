@@ -7,15 +7,15 @@ RSpec.describe PieceMoves do
   include PieceMoves
 
   let(:position) { [6, 3] }
-  let(:player_pieces) { %w[♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟] }
-  let(:opponent_pieces) { %w[♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ♙] }
+  let(:player_pieces) { %w[♜ ♞ ♝ ♛ ♔ ♝ ♞ ♜ ♟] }
+  let(:opponent_pieces) { %w[♖ ♘ ♗ ♕ ♚ ♗ ♘ ♖ ♙] }
   let(:chess_board) { Array.new(8) { Array.new(8, ' ') } }
   let(:all_directions) { [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, 1], [-1, 1], [1, -1]] }
 
   describe '#rook_valid_moves' do
     context 'when there are no pieces in valid moves' do
       it 'will return all valid moves on board' do
-        valid_moves = rook_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = rook_valid_moves(player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(14)
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe PieceMoves do
       end
 
       it 'will return less valid moves' do
-        valid_moves = rook_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = rook_valid_moves(player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(4)
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe PieceMoves do
   describe '#bishop_valid_moves' do
     context 'when there are no pieces in valid moves' do
       it 'will return all valid moves on board' do
-        valid_moves = bishop_valid_moves(opponent_pieces, position[0], position[1], chess_board, player_pieces)
+        valid_moves = bishop_valid_moves(position[0], position[1], chess_board, player_pieces)
         expect(valid_moves.size).to eql(9)
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe PieceMoves do
       end
 
       it 'will return less valid moves' do
-        valid_moves = bishop_valid_moves(opponent_pieces, position[0], position[1], chess_board, player_pieces)
+        valid_moves = bishop_valid_moves(position[0], position[1], chess_board, player_pieces)
         expect(valid_moves.size).to eql(5)
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe PieceMoves do
   describe '#queen_valid_moves' do
     context 'when there are no pieces in valid moves' do
       it 'will return all valid moves on board' do
-        valid_moves = queen_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = queen_valid_moves(player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(23)
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe PieceMoves do
       end
 
       it 'will return less valid moves' do
-        valid_moves = queen_valid_moves(opponent_pieces, player_pieces, chess_board, position[0], position[1])
+        valid_moves = queen_valid_moves(player_pieces, chess_board, position[0], position[1])
         expect(valid_moves.size).to eql(16)
       end
     end
